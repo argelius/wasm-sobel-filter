@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+    <title>Uppercase</title>
+    <style>
+      video {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <input id="input" placeholder="Write something here"></input>
+    <div id="output"></div>
+    <script>
+      const input = document.getElementById('input');
+      const output = document.getElementById('output');
+
+      function handleInput(event) {
+        const value = event.target.value;
+
+        const src = allocate(intArrayFromString(value), 'i8', ALLOC_NORMAL);
+        const dst = _malloc(value.length);
+
+        Module.ccall(
+          'upper',
+          null,
+          ['number', 'number'],
+          [dst, src],
+        );
+
+        const result = Pointer_stringify(dst);
+
+        _free(src);
+        _free(dst);
+
+        output.innerHTML = result;
+      }
+
+      var Module = {
+        onRuntimeInitialized: function() {
+          input.addEventListener('input', handleInput);
+        },
+      };
+    </script>
+    <script type="text/javascript" src="upper.js"></script>
+  </body>
+</html>

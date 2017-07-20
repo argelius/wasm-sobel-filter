@@ -16,11 +16,11 @@
 
     <p>
       <label for="none">No filter:</label>
-      <input name="filter" type="radio" id="none" checked></input>
+      <input name="filter" type="radio" id="none">
       <label for="sobel-js">Sobel filter (JS):</label>
-      <input name="filter" type="radio" id="sobel-js"></input>
+      <input name="filter" type="radio" id="sobel-js">
       <label for="sobel-wasm">Sobel filter (WASM):</label>
-      <input name="filter" type="radio" id="sobel-wasm"></input>
+      <input name="filter" type="radio" id="sobel-wasm">
     </p>
 
     <script type="text/javascript" src="sobel.js"></script>
@@ -85,32 +85,32 @@
         const newData = data.slice(0);
 
         const kernelX = [
-          [-1,  0, 1],
-          [-2,  0, 2],
-          [-1,  0, 1],
+        [-1,  0, 1],
+        [-2,  0, 2],
+        [-1,  0, 1],
         ];
 
         const kernelY = [
-          [-1, -2, -1],
-          [ 0,  0,  0],
-          [ 1,  2,  1],
+        [-1, -2, -1],
+        [ 0,  0,  0],
+        [ 1,  2,  1],
         ];
 
         for (let i = 1; i < HEIGHT - 1; i = i + 1) {
           for (let j = 1; j < WIDTH - 1; j = j + 1) {
             const pixelX = (kernelX[0][0] * getPixel(data, i - 1, j - 1)) +
-                           (kernelX[0][2] * getPixel(data, i - 1, j + 1)) +
-                           (kernelX[1][0] * getPixel(data, i, j - 1)) +
-                           (kernelX[1][2] * getPixel(data, i, j + 1)) +
-                           (kernelX[2][0] * getPixel(data, i + 1, j - 1)) +
-                           (kernelX[2][2] * getPixel(data, i + 1, j + 1));
+            (kernelX[0][2] * getPixel(data, i - 1, j + 1)) +
+            (kernelX[1][0] * getPixel(data, i, j - 1)) +
+            (kernelX[1][2] * getPixel(data, i, j + 1)) +
+            (kernelX[2][0] * getPixel(data, i + 1, j - 1)) +
+            (kernelX[2][2] * getPixel(data, i + 1, j + 1));
 
             const pixelY = (kernelY[0][0] * getPixel(data, i - 1, j - 1)) +
-                           (kernelY[0][1] * getPixel(data, i - 1, j)) +
-                           (kernelY[0][2] * getPixel(data, i - 1, j + 1)) +
-                           (kernelY[2][0] * getPixel(data, i + 1, j - 1)) +
-                           (kernelY[2][1] * getPixel(data, i + 1, j)) +
-                           (kernelY[2][2] * getPixel(data, i + 1, j + 1));
+            (kernelY[0][1] * getPixel(data, i - 1, j)) +
+            (kernelY[0][2] * getPixel(data, i - 1, j + 1)) +
+            (kernelY[2][0] * getPixel(data, i + 1, j - 1)) +
+            (kernelY[2][1] * getPixel(data, i + 1, j)) +
+            (kernelY[2][2] * getPixel(data, i + 1, j + 1));
 
             const mag = Math.ceil(Math.sqrt(pixelX**2 + pixelY**2));
             newData[i * 4 * WIDTH + 4 * j] = mag;
