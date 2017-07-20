@@ -11,8 +11,8 @@
     </style>
   </head>
   <body>
-    <video width="640" height="480"></video>
-    <canvas width="640" height="480"></canvas>
+    <video width="1024" height="768"></video>
+    <canvas width="1024" height="768"></canvas>
 
     <p>
       <label for="none">No filter:</label>
@@ -24,16 +24,13 @@
     </p>
 
     <script>
-      const startTime = Date.now();
-
       var Module = {
         onRuntimeInitialized: run,
       };
 
       function run() {
-        console.log(Date.now() - startTime);
-        const WIDTH = 640;
-        const HEIGHT = 480;
+        const WIDTH = 1024;
+        const HEIGHT = 768;
 
         const canvas = document.querySelector('canvas');
         const video = document.querySelector('video');
