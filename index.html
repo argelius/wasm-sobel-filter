@@ -13,11 +13,12 @@
   <body>
     <video width="640" height="480"></video>
     <canvas width="640" height="480"></canvas>
+
     <p>
+      <label for="none">No filter:</label>
+      <input name="filter" type="radio" id="none" checked></input>
       <label for="sobel-js">Sobel filter (JS):</label>
-      <input name="filter" type="radio" id="sobel-js" checked></input>
-    </p>
-    <p>
+      <input name="filter" type="radio" id="sobel-js"></input>
       <label for="sobel-wasm">Sobel filter (WASM):</label>
       <input name="filter" type="radio" id="sobel-wasm"></input>
     </p>
