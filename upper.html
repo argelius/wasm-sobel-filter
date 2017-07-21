@@ -21,7 +21,7 @@
         const value = event.target.value;
 
         const src = allocate(intArrayFromString(value), 'i8', ALLOC_NORMAL);
-        const dst = _malloc(value.length);
+        const dst = _malloc(value.length + 1);
 
         Module.ccall(
           'upper',
